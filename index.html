@@ -19,15 +19,22 @@ function makeentry(v) {
         const mainlink = document.createElement("a")
         mainlink.href = "https://www.subter.org/library/" + v.assetId.toString();
         mainlink.target = "_blank"
+        mainlink.className = "item"
         const image = document.createElement("img");
         image.src = "audio.png";
         image.height = 200;
         const breakele = document.createElement("br");
         const title = document.createElement("h3")
         title.innerHTML = v.assetName
+        const centering = document.createElement("center");
+        const play = document.createElement("a")
+        play.innerHTML = "Play"
+        play.href = "https://www.subter.org/asset?id=" + v.assetId.toString();
+        centering.appendChild(play);
         mainlink.appendChild(image);
         mainlink.appendChild(breakele);
         mainlink.appendChild(title)
+        mainlink.appendChild(centering);
         document.body.appendChild(mainlink);
     }
 </script>
@@ -35,7 +42,7 @@ function makeentry(v) {
     body {
         background-color: #2f2f2f;
     }
-    a {
+    .item {
         background-color: white;
         display:    inline-block;
         border-radius: 5px;
@@ -47,10 +54,22 @@ function makeentry(v) {
     }
     h3 {
         color: black;
-        text-align: center;
         font-family: sans-serif;
         word-wrap: break-word;
         width: 200px;
         display:flex;
+    }
+    a {
+        color: black;
+        font-family: sans-serif;
+        word-wrap: break-word;
+        display:flex;
+        text-decoration: none;
+    }
+    a:hover {
+        color: rgb(27, 118, 229);
+    }
+    .item:hover {
+        background-color: rgb(196, 196, 196);
     }
 </style>
