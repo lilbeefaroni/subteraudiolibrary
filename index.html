@@ -1,75 +1,98 @@
 <script>
-const users = ["20.json","123.json", "3.json", "9.json","14.json", "8.json"];
-users.forEach(fetching);
-function fetching(val) {
-    fetch(val).then(response => response.json()).then(jsondata => {
-    const centering = document.createElement("center");
-    const title = document.createElement("h1");
-    title.innerHTML = jsondata.data[0].owner.username
-    centering.appendChild(title);
-    document.body.appendChild(centering);
-    jsondata.data.forEach(makeentry)
-    const seperater = document.createElement("hr");
-    document.body.appendChild(seperater);
-    })
-}
-function makeentry(v) {
-        //console.log(v.assetId)
-        //console.log(v.assetName)
-        const mainlink = document.createElement("a")
+    const users = ["20.json", "123.json", "3.json", "9.json", "14.json", "8.json"];
+    users.forEach(fetching);
+    function fetching(val) {
+        fetch(val).then(response => response.json()).then(jsondata => {
+            const centering = document.createElement("center");
+            const title = document.createElement("h1");
+            title.innerHTML = jsondata.data[0].owner.username;
+            centering.appendChild(title);
+            document.body.appendChild(centering);
+            jsondata.data.forEach(makeentry);
+            const seperater = document.createElement("hr");
+            document.body.appendChild(seperater);
+        });
+    }
+    function makeentry(v) {
+        const mainlink = document.createElement("a");
         mainlink.href = "https://www.subter.org/library/" + v.assetId.toString();
-        mainlink.target = "_blank"
-        mainlink.className = "item"
+        mainlink.target = "_blank";
+        mainlink.className = "item";
         const image = document.createElement("img");
         image.src = "audio.png";
         image.height = 200;
         const breakele = document.createElement("br");
-        const title = document.createElement("h3")
-        title.innerHTML = v.assetName
+        const title = document.createElement("h3");
+        title.innerHTML = v.assetName;
         const centering = document.createElement("center");
-        const play = document.createElement("a")
-        play.innerHTML = "Play"
+        const play = document.createElement("a");
+        play.innerHTML = "Play";
         play.href = "https://www.subter.org/asset?id=" + v.assetId.toString();
+        play.className = "play-button"; // Added class for styling
         centering.appendChild(play);
         mainlink.appendChild(image);
         mainlink.appendChild(breakele);
-        mainlink.appendChild(title)
+        mainlink.appendChild(title);
         mainlink.appendChild(centering);
         document.body.appendChild(mainlink);
     }
-</script>
-<style>
-    body {
-        background-color: #2f2f2f;
-    }
-    .item {
-        background-color: white;
-        display:    inline-block;
-        border-radius: 5px;
-        text-decoration: none;
-    }
-    h1 {
-        color: white;
-        font-family: sans-serif;
-    }
-    h3 {
-        color: black;
-        font-family: sans-serif;
-        word-wrap: break-word;
-        width: 200px;
-        display:flex;
-    }
-    a {
-        color: black;
-        font-family: sans-serif;
-        word-wrap: break-word;
-        display:flex;
-        text-decoration: none;
-    }
-    a:hover {
-        color: rgb(27, 118, 229);
-    }
-    .item:hover {
-        background-color: rgb(196, 196, 196);
-    }
-</style>
+    </script>
+    <style>
+        body {
+            background-color: #2f2f2f;
+        }
+        .item {
+            background-color: white;
+            display: inline-block;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        h1 {
+            color: white;
+            font-family: sans-serif;
+        }
+        h3 {
+            color: black;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            width: 200px;
+            display: flex;
+        }
+        a {
+            color: black;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            display: flex;
+            text-decoration: none;
+        }
+        a:hover {
+            color: rgb(27, 118, 229);
+        }
+        .item:hover {
+            background-color: rgb(196, 196, 196);
+        }
+        /* New styles for the Play button */
+        .play-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(27, 118, 229); /* Blue background */
+            color: white; /* White text */
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transitions */
+        }
+        .play-button:hover {
+            background-color: rgb(20, 90, 180); /* Darker blue on hover */
+            color: white;
+            transform: scale(1.05); /* Slight scale-up effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+        }
+        .play-button:active {
+            transform: scale(0.95); /* Slight scale-down on click */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+        }
+    </style>
