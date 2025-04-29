@@ -1,1 +1,56 @@
-
+<script>
+const users = ["20.json","123.json", "3.json", "9.json", "8.json"];
+users.forEach(fetching);
+function fetching(val) {
+    fetch(val).then(response => response.json()).then(jsondata => {
+    const centering = document.createElement("center");
+    const title = document.createElement("h1");
+    title.innerHTML = jsondata.data[0].owner.username
+    centering.appendChild(title);
+    document.body.appendChild(centering);
+    jsondata.data.forEach(makeentry)
+    const seperater = document.createElement("hr");
+    document.body.appendChild(seperater);
+    })
+}
+function makeentry(v) {
+        //console.log(v.assetId)
+        //console.log(v.assetName)
+        const mainlink = document.createElement("a")
+        mainlink.href = "https://www.subter.org/library/" + v.assetId.toString();
+        mainlink.target = "_blank"
+        const image = document.createElement("img");
+        image.src = "audio.png";
+        image.height = 200;
+        const breakele = document.createElement("br");
+        const title = document.createElement("h3")
+        title.innerHTML = v.assetName
+        mainlink.appendChild(image);
+        mainlink.appendChild(breakele);
+        mainlink.appendChild(title)
+        document.body.appendChild(mainlink);
+    }
+</script>
+<style>
+    body {
+        background-color: #2f2f2f;
+    }
+    a {
+        background-color: white;
+        display:    inline-block;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    h1 {
+        color: white;
+        font-family: sans-serif;
+    }
+    h3 {
+        color: black;
+        text-align: center;
+        font-family: sans-serif;
+        word-wrap: break-word;
+        width: 200px;
+        display:flex;
+    }
+</style>
